@@ -41,22 +41,10 @@ public class StudentPage extends JPanel{
 		label1.setFont(new Font("", Font.BOLD, 20));
 		this.add(label1);
 		
-		JButton checkRooms = new JButton("Check Rooms Availability");
 		JButton applyForm = new JButton("Fill up a form");
-		JButton checkAppointment = new JButton("Check Allocation");
+		JButton checkAllocation = new JButton("Check Allocation");
 		JButton payDormFee = new JButton("Pay Dorm Fee");
 		JButton LogOff = new JButton("Log Off");
-		
-		checkRooms.setVisible(true);
-		this.add(checkRooms);
-		checkRooms.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
 		
 		applyForm.setVisible(true);
 		this.add(applyForm);
@@ -67,9 +55,8 @@ public class StudentPage extends JPanel{
 			}
 		});
 		
-		
-		checkAppointment.setVisible(true);
-		this.add(checkAppointment);
+		checkAllocation.setVisible(true);
+		this.add(checkAllocation);
 		
 		payDormFee.setVisible(true);
 		this.add(payDormFee);
