@@ -82,7 +82,6 @@ public class StudentPage extends JPanel{
 		
 		LogOff.setVisible(true);
 		this.add(LogOff);
-		
 		LogOff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
