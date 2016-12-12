@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Database {
-	public static final String DB_URL = "jdbc:mysql://localhost:3306/dms";
-	public static final String USER = "root";
-	public static final String PASS = "root123";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/cs202";
+	private static final String USER = "root";
+	private static final String PASS = "12345";
 	public Statement stmt;
 	
 

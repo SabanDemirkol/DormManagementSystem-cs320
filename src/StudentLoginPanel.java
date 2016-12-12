@@ -1,10 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -21,7 +19,7 @@ public class StudentLoginPanel extends JFrame {
 	public StudentLoginPanel() {
 
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setTitle("Customer Login");
+		this.setTitle("Student Login");
 		this.setLayout(null);
 		this.setLocation(250, 40);
 
@@ -50,12 +48,8 @@ public class StudentLoginPanel extends JFrame {
 				model = new StudentLoginModel();
 				user = txtStudentName.getText();
 				ps = passWord.getPassword();
-				
-				//işte burda diyelim şifre doğru değil ise
-					JOptionPane.showMessageDialog(null, " Please check the username or password and try again! ");
-				new StudentLoginPanel();
-				//eğer şifre doğru ise
-				new StudentPage();
+				StudentController controller = new StudentController();
+				controller.checkLogin(user,ps);
 			}
 		});
 		
@@ -67,7 +61,7 @@ public class StudentLoginPanel extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				setVisible(false);
 			}
 		});
 

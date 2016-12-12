@@ -13,13 +13,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import sun.applet.Main;
+
 public class StudentPage extends JPanel {
 	private int width = 600;
 	private int height = 600;
 	private MenuController controller;
 	private Student student;
-
-	public StudentPage(Student student) {
+public static void main(String[] args){
+	new StudentPage();
+}
+	public StudentPage(/*Student student*/) {
 		this.student = student;
 		controller = new MenuController();
 		JFrame frame = new JFrame();
@@ -32,7 +36,7 @@ public class StudentPage extends JPanel {
 		this.setLayout(new GridLayout(6, 1));
 
 		JLabel label1 = new JLabel("Welcome to Student Interface");
-		label1.setBounds(100, -10, 400, 100);
+		label1.setBounds(200, -10, 300, 100);
 		label1.setForeground(Color.blue);
 		label1.setBounds(100, -10, 400, 100);
 		label1.setFont(new Font("", Font.BOLD, 20));
@@ -124,8 +128,8 @@ public class StudentPage extends JPanel {
 		formFrame.setSize(width, height);
 		formFrame.setLayout(null);
 
-		String[] priorityOptions = new String[] { "None", "Scholarship", "Disabled" };
-
+		String[] priorityOptions =  { "None", "Scholarship", "Disabled" };
+		String[] genderOption = {"male","female"};
 		JLabel label1 = new JLabel(" Application Form ");
 		JLabel explanation = new JLabel(" Please fill the following questions: ");
 		JLabel nameLabel = new JLabel("Enter your name: ");
@@ -133,7 +137,7 @@ public class StudentPage extends JPanel {
 		JTextField nameField = new JTextField();
 		JTextField surnameField = new JTextField();
 		JComboBox<String> priority = new JComboBox<>(priorityOptions);
-
+		JComboBox<String> gender = new JComboBox<>(genderOption);
 		JButton apply = new JButton("Apply");
 
 		label1.setBounds(220, -10, 400, 100);

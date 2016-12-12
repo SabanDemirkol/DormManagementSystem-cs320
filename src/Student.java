@@ -2,9 +2,9 @@
 public class Student {
 	int studentID;
 	int password;
+	int priorityCounter = 0;
 	boolean isDisabled;
 	boolean isFullyScholarship;
-	int priorityCounter = 0;
 
 	public Student(int studentID, int password) {
 		this.studentID = studentID;
