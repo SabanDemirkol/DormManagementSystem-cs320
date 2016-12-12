@@ -52,12 +52,38 @@ public class StudentModel {
 
 
 	public boolean isFormFilled(int studentID) {
-		
-		return true;
+		String sql = "select isFormFilled from student where ID='"+studentID+"'";
+		try( ResultSet rs3 = stmt.executeQuery(sql)) {
+			while(rs3.next()) {
+				if(rs3.getInt("isFormFilled") == 1)
+					return true;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
-	public void setStudentsPriority(int priority,String ID) {
-		String sql = "update student set priority="+priority+" where ID="+Integer.valueOf(ID);
+	public void setStudentsPriority(int priority,String ID)  {
+		String sql = "update student set priority="+priority+" where ID='"+ID+"'";
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	public void setIsFormFilled(int isFormFilled, String ID) {
+		String sql = "update student set isFormFilled="+isFormFilled+" where ID='"+ID+"'";
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
