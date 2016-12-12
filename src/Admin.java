@@ -1,5 +1,6 @@
 
 public class Admin {
+	
 	String name;
 	String password;
 

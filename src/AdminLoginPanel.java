@@ -15,6 +15,7 @@ public class AdminLoginPanel{
 
 	public AdminLoginPanel() {
 		controller = new AdminController();
+		
 		JFrame adminFrame = new JFrame("Admin Login");
 		adminFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		adminFrame.setSize(600, 280);

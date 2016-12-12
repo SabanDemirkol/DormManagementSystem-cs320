@@ -39,7 +39,8 @@ public class Student {
 		return password;
 	}
 public void checkPriortyCounter(){
-	priorityCounter = ((isDisabled)?1:0) + ((isFullyScholarship)?1:0);
+	priorityCounter =((isFullyScholarship)?1:0);
+	priorityCounter = ((isDisabled)?2:priorityCounter);
 }
 public int getPriorityCounter(){
 	return priorityCounter;

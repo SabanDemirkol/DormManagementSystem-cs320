@@ -4,5 +4,6 @@ public class AdminController {
 
 	public void checkAdminLogin(String text, char[] password) {
 
+	
 	}
 }

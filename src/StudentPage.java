@@ -13,17 +13,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class StudentPage extends JPanel{
+public class StudentPage extends JPanel {
 	private int width = 600;
 	private int height = 600;
 	private MenuController controller;
-	
-	public static void main(String[] args) {
+	private Student student;
 
-		new StudentPage();
-	}
-	
-	public StudentPage() {
+	public StudentPage(Student student) {
+		this.student = student;
 		controller = new MenuController();
 		JFrame frame = new JFrame();
 		frame.setSize(width, height);
@@ -33,31 +30,30 @@ public class StudentPage extends JPanel{
 	private void createStudentMenu(JFrame frame) {
 		this.setSize(width, height);
 		this.setLayout(new GridLayout(6, 1));
-		
+
 		JLabel label1 = new JLabel("Welcome to Student Interface");
 		label1.setBounds(100, -10, 400, 100);
 		label1.setForeground(Color.blue);
 		label1.setBounds(100, -10, 400, 100);
 		label1.setFont(new Font("", Font.BOLD, 20));
 		this.add(label1);
-		
+
 		JButton checkRooms = new JButton("Check Rooms Availability");
 		JButton applyForm = new JButton("Fill up a form");
 		JButton checkAppointment = new JButton("Check Allocation");
 		JButton payDormFee = new JButton("Pay Dorm Fee");
 		JButton LogOff = new JButton("Log Off");
-		
+
 		checkRooms.setVisible(true);
 		this.add(checkRooms);
 		checkRooms.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
-		
+
 		applyForm.setVisible(true);
 		this.add(applyForm);
 		applyForm.addActionListener(new ActionListener() {
@@ -66,11 +62,10 @@ public class StudentPage extends JPanel{
 				fillForm();
 			}
 		});
-		
-		
+
 		checkAppointment.setVisible(true);
 		this.add(checkAppointment);
-		
+
 		payDormFee.setVisible(true);
 		this.add(payDormFee);
 		payDormFee.addActionListener(new ActionListener() {
@@ -79,7 +74,7 @@ public class StudentPage extends JPanel{
 				openPaymentWindow();
 			}
 		});
-		
+
 		LogOff.setVisible(true);
 		this.add(LogOff);
 		LogOff.addActionListener(new ActionListener() {
@@ -89,24 +84,25 @@ public class StudentPage extends JPanel{
 				System.exit(0);
 			}
 		});
-		
+
 		frame.add(this);
 		frame.setVisible(true);
 	}
+
 	public void openPaymentWindow() {
 		int width = 500;
 		int height = 300;
-		
+
 		JFrame paymentFrame = new JFrame();
 		paymentFrame.setSize(width, height);
 		paymentFrame.setLayout(null);
-		
+
 		JLabel amount = new JLabel(" Dormitory fee is 7500 TL. ");
 		amount.setBounds(180, 10, 250, 50);
-		
+
 		JLabel explanation = new JLabel("The payment will be withdrawed from your registered account in the system. ");
 		explanation.setBounds(25, 40, 500, 50);
-		
+
 		JButton approve = new JButton(" Approve payment ");
 		approve.setBounds(150, 150, 200, 30);
 		approve.addActionListener(new ActionListener() {
@@ -115,57 +111,66 @@ public class StudentPage extends JPanel{
 				System.exit(0);
 			}
 		});
-		
+
 		paymentFrame.add(amount);
 		paymentFrame.add(approve);
 		paymentFrame.add(explanation);
 		paymentFrame.setVisible(true);
 	}
-	
+
 	public void fillForm() {
-		
+
 		JFrame formFrame = new JFrame();
 		formFrame.setSize(width, height);
 		formFrame.setLayout(null);
-		
-		String[] priorityOptions = new String[] {"None", "Scholarship", "Disabled"};
-		String[] genderOptions = new String[] {"Male", "Female"};
-		
+
+		String[] priorityOptions = new String[] { "None", "Scholarship", "Disabled" };
+
 		JLabel label1 = new JLabel(" Application Form ");
-		JLabel explanation = new JLabel( " Please fill the following questions: ");
-		JTextField name = new JTextField("Enter your name: ");
-		JTextField surname = new JTextField("Enter your surname: ");
-		JComboBox<String> gender = new JComboBox<>(genderOptions);
-		JComboBox<String> priority = new JComboBox<>(priorityOptions);	
+		JLabel explanation = new JLabel(" Please fill the following questions: ");
+		JLabel nameLabel = new JLabel("Enter your name: ");
+		JLabel surnameLabel = new JLabel("Enter your surname: ");
+		JTextField nameField = new JTextField();
+		JTextField surnameField = new JTextField();
+		JComboBox<String> priority = new JComboBox<>(priorityOptions);
+
 		JButton apply = new JButton("Apply");
-		
+
 		label1.setBounds(220, -10, 400, 100);
 		label1.setForeground(Color.blue);
 		label1.setFont(new Font("", Font.BOLD, 20));
-		
+
+		nameLabel.setBounds(50, 150, 150, 30);
+		surnameLabel.setBounds(50, 200, 150, 30);
 		explanation.setBounds(10, 50, 400, 100);
-		name.setBounds(50, 150, 300, 30);
-		surname.setBounds(50, 200, 300, 30);
-		gender.setBounds(50, 250, 100, 30);
+		nameField.setBounds(200, 150, 300, 30);
+		surnameField.setBounds(200, 200, 300, 30);
 		priority.setBounds(50, 300, 100, 30);
-		
+
 		apply.setBounds(250, 500, 100, 30);
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String comboPriority = priority.getSelectedItem().toString();
+				if (comboPriority.equals("Scholarship"))
+					student.setFullyScholarship(true);
+				else
+					student.setDisabled(true);
+				student.checkPriortyCounter();
 				JOptionPane.showMessageDialog(null, " Application is successfull. ");
-				System.exit(0);			
+				System.exit(0);
 			}
 		});
-		
+
+		formFrame.add(nameLabel);
+		formFrame.add(surnameLabel);
 		formFrame.add(label1);
 		formFrame.add(explanation);
-		formFrame.add(name);
-		formFrame.add(surname);
-		formFrame.add(gender);
+		formFrame.add(nameField);
+		formFrame.add(surnameField);
 		formFrame.add(priority);
 		formFrame.add(apply);
-		
+
 		formFrame.setVisible(true);
-		
+
 	}
 }
