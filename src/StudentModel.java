@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
-public class StudentLoginModel {
+public class StudentModel {
 	public Database db;
 	public Statement stmt;
 	ArrayList<String> IDs;
 
-	public StudentLoginModel() {
+	public StudentModel() {
 		try {
 			db = new Database();
 		} catch (SQLException e) {
@@ -48,6 +48,16 @@ public class StudentLoginModel {
 			}
 			return false;
 		}
+	}
+
+
+	public boolean isFormFilled(int studentID) {
+		
+		return true;
+	}
+
+	public void setStudentsPriority(int priority,String Integer.valueOf(ID)) {
+		String sql = "update student set priority="+priority+" where ID="+Integer.valueOf(ID);
 	}
 
 }

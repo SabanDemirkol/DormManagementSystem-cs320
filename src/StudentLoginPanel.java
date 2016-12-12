@@ -9,14 +9,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class StudentLoginPanel extends JFrame {
-	public static ArrayList<Student> students = new ArrayList<Student>();
+	StudentController controller = new StudentController();
 	private JLabel lblStudentName, lblPassWord;
 	private JTextField txtStudentName;
 	private JPasswordField passWord;
 	private JButton btnLogin, btnClose;
 	private String user;
 	private char[] ps;
-	StudentLoginModel model;
+	StudentModel model;
 
 	public StudentLoginPanel() {
 
@@ -47,11 +47,10 @@ public class StudentLoginPanel extends JFrame {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				model = new StudentLoginModel();
+				model = new StudentModel();
 				user = txtStudentName.getText();
 				ps = passWord.getPassword();
-				StudentController controller = new StudentController();
-				controller.checkLogin(user,ps,students);
+				controller.checkLogin(user,ps);
 			}
 		});
 		

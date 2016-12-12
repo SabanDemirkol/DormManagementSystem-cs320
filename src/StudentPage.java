@@ -18,16 +18,16 @@ import sun.applet.Main;
 public class StudentPage extends JPanel {
 	private int width = 600;
 	private int height = 600;
-	private MenuController controller;
-	private Student student;
+	private StudentController controller;
+	private int studentID;
 	JFrame frame;
 	public static void main(String[] args) {
-		new StudentPage();
+		new StudentPage(4392);
 	}
 
-	public StudentPage( Student student ) {
-		this.student = student;
-		controller = new MenuController();
+	public StudentPage( int studentID ) {
+		this.studentID = studentID;
+		controller = new StudentController();
 		 frame = new JFrame();
 		frame.setSize(width, height);
 		createStudentMenu(frame);
@@ -65,12 +65,11 @@ public class StudentPage extends JPanel {
 		applyForm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(student.getFormCounter()==0)
-				fillForm();
-				else 
+				if(controller.fillForm(studentID))
+					fillForm();
+				else
 				JOptionPane.showMessageDialog(null, "Application form already filled.");
-			}
-		});
+		}});
 
 		checkAppointment.setVisible(true);
 		this.add(checkAppointment);
@@ -168,12 +167,7 @@ paymentFrame.setVisible(false);			}
 					JOptionPane.showMessageDialog(null, "Please fill all blanks");
 
 				} else {
-					if (comboPriority.equals("Scholarship"))
-						student.setFullyScholarship(true);
-					else
-						student.setDisabled(true);
-					student.checkPriortyCounter();
-					student.setGender(comboGender);
+					controller.checkPriorty(comboPriority);
 					JOptionPane.showMessageDialog(null, " Application is successfull. ");
 					formFrame.setVisible(false);
 				}

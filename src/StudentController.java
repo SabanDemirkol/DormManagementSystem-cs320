@@ -5,31 +5,34 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class StudentController {
-	StudentLoginModel model = new StudentLoginModel();
-
+	StudentModel model = new StudentModel();
+String ID;
 	public StudentController() {
 	}
 
-	public void checkLogin(String user, char[] ps, ArrayList<Student> students) {
+	public void checkLogin(String ID, char[] ps) {
+		this.ID = ID;
 		try {
-			if (!model.isLoginCorrect(user, ps)) {
+			if (!model.isLoginCorrect(ID, ps)) {
 				JOptionPane.showMessageDialog(null, " Please check the username or password and try again! ");
-				new StudentLoginPanel();
 			} else {
-				boolean isValid = false;
-				int indexOfStudent = 0;
-				for (Student student : students) {
-					if(student.getStudentID()==Integer.valueOf(user)){
-						indexOfStudent = students.indexOf(student);
-
-					}
-				
-				}
-				
-				new StudentPage(student);
+				new StudentPage(Integer.valueOf(ID));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean fillForm(int studentID) {
+		return (model.isFormFilled(studentID));
+	}
+
+	public void checkPriorty(String comboPriority) {
+		if(comboPriority.equals("None"))
+model.setStudentsPriority(0,ID);
+		else if ( comboPriority.equals("Scholarship"))
+			model.setStudentsPriority(1,ID);
+		else if(comboPriority.equals("Disabled"))
+			model.setStudentsPriority(2,ID);
 	}
 }
