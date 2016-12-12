@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,7 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class StudentLoginPanel extends JFrame {
-
+	public static ArrayList<Student> students = new ArrayList<Student>();
 	private JLabel lblStudentName, lblPassWord;
 	private JTextField txtStudentName;
 	private JPasswordField passWord;
@@ -49,7 +51,7 @@ public class StudentLoginPanel extends JFrame {
 				user = txtStudentName.getText();
 				ps = passWord.getPassword();
 				StudentController controller = new StudentController();
-				controller.checkLogin(user,ps);
+				controller.checkLogin(user,ps,students);
 			}
 		});
 		

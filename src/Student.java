@@ -1,28 +1,41 @@
 
 public class Student {
+	int formCounter = 0;
 	int studentID;
 	int password;
 	int priorityCounter = 0;
 	boolean isDisabled;
 	boolean isFullyScholarship;
 	String gender = null;
+
 	public Student(int studentID, int password) {
 		this.studentID = studentID;
 		this.password = password;
 		isDisabled = false;
 		isFullyScholarship = false;
 	}
-	public void setGender(String gender){
+
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getGender(){
-		if(!gender.equals(null))
-		return gender;
-		else return " ";
+
+	public String getGender() {
+		if (!gender.equals(null))
+			return gender;
+		else
+			return " ";
 	}
 
 	public boolean getDisabled() {
 		return isDisabled;
+	}
+
+	public int getFormCounter() {
+		return formCounter;
+	}
+
+	public void addFormCounter() {
+		formCounter++;
 	}
 
 	public boolean getFullyScholarship() {
@@ -46,12 +59,13 @@ public class Student {
 	public int getPassword() {
 		return password;
 	}
-public void checkPriortyCounter(){
-	priorityCounter =((isFullyScholarship)?1:0);
-	priorityCounter = ((isDisabled)?2:priorityCounter);
-}
-public int getPriorityCounter(){
-	return priorityCounter;
-}
-}
 
+	public void checkPriortyCounter() {
+		priorityCounter = ((isFullyScholarship) ? 1 : 0);
+		priorityCounter = ((isDisabled) ? 2 : priorityCounter);
+	}
+
+	public int getPriorityCounter() {
+		return priorityCounter;
+	}
+}
