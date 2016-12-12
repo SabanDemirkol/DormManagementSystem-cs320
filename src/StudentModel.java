@@ -56,7 +56,7 @@ public class StudentModel {
 		return true;
 	}
 
-	public void setStudentsPriority(int priority,String Integer.valueOf(ID)) {
+	public void setStudentsPriority(int priority,String ID) {
 		String sql = "update student set priority="+priority+" where ID="+Integer.valueOf(ID);
 	}
 
