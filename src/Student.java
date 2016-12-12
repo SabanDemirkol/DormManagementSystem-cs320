@@ -5,12 +5,20 @@ public class Student {
 	int priorityCounter = 0;
 	boolean isDisabled;
 	boolean isFullyScholarship;
-
+	String gender = null;
 	public Student(int studentID, int password) {
 		this.studentID = studentID;
 		this.password = password;
 		isDisabled = false;
 		isFullyScholarship = false;
+	}
+	public void setGender(String gender){
+		this.gender = gender;
+	}
+	public String getGender(){
+		if(!gender.equals(null))
+		return gender;
+		else return " ";
 	}
 
 	public boolean getDisabled() {

@@ -20,13 +20,15 @@ public class StudentPage extends JPanel {
 	private int height = 600;
 	private MenuController controller;
 	private Student student;
-public static void main(String[] args){
-	new StudentPage();
-}
-	public StudentPage(/*Student student*/) {
+	JFrame frame;
+	public static void main(String[] args) {
+		new StudentPage();
+	}
+
+	public StudentPage( Student student ) {
 		this.student = student;
 		controller = new MenuController();
-		JFrame frame = new JFrame();
+		 frame = new JFrame();
 		frame.setSize(width, height);
 		createStudentMenu(frame);
 	}
@@ -63,7 +65,10 @@ public static void main(String[] args){
 		applyForm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(student.getFormCounter()==0)
 				fillForm();
+				else 
+				JOptionPane.showMessageDialog(null, "Application form already filled.");
 			}
 		});
 
@@ -112,8 +117,7 @@ public static void main(String[] args){
 		approve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, " Payment is successfull ");
-				System.exit(0);
-			}
+paymentFrame.setVisible(false);			}
 		});
 
 		paymentFrame.add(amount);
@@ -127,9 +131,9 @@ public static void main(String[] args){
 		JFrame formFrame = new JFrame();
 		formFrame.setSize(width, height);
 		formFrame.setLayout(null);
-
-		String[] priorityOptions =  { "None", "Scholarship", "Disabled" };
-		String[] genderOption = {"male","female"};
+		String[] roomList = { "-", "Single room with bathroom" };
+		String[] priorityOptions = { "-", "None", "Scholarship", "Disabled" };
+		String[] genderOption = { "-", "male", "female" };
 		JLabel label1 = new JLabel(" Application Form ");
 		JLabel explanation = new JLabel(" Please fill the following questions: ");
 		JLabel nameLabel = new JLabel("Enter your name: ");
@@ -138,6 +142,7 @@ public static void main(String[] args){
 		JTextField surnameField = new JTextField();
 		JComboBox<String> priority = new JComboBox<>(priorityOptions);
 		JComboBox<String> gender = new JComboBox<>(genderOption);
+		JComboBox<String> room = new JComboBox<>(roomList);
 		JButton apply = new JButton("Apply");
 
 		label1.setBounds(220, -10, 400, 100);
@@ -150,21 +155,32 @@ public static void main(String[] args){
 		nameField.setBounds(200, 150, 300, 30);
 		surnameField.setBounds(200, 200, 300, 30);
 		priority.setBounds(50, 300, 100, 30);
-
+		gender.setBounds(50, 400, 100, 30);
+		room.setBounds(50, 500, 100, 30);
 		apply.setBounds(250, 500, 100, 30);
 		apply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String comboGender = gender.getSelectedItem().toString();
+				String comboRoom = room.getSelectedItem().toString();
 				String comboPriority = priority.getSelectedItem().toString();
-				if (comboPriority.equals("Scholarship"))
-					student.setFullyScholarship(true);
-				else
-					student.setDisabled(true);
-				student.checkPriortyCounter();
-				JOptionPane.showMessageDialog(null, " Application is successfull. ");
-				System.exit(0);
+				if ((comboGender + comboPriority + comboRoom).contains("-") || nameField.getText().isEmpty()
+						|| surnameField.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please fill all blanks");
+
+				} else {
+					if (comboPriority.equals("Scholarship"))
+						student.setFullyScholarship(true);
+					else
+						student.setDisabled(true);
+					student.checkPriortyCounter();
+					student.setGender(comboGender);
+					JOptionPane.showMessageDialog(null, " Application is successfull. ");
+					formFrame.setVisible(false);
+				}
 			}
 		});
-
+		formFrame.add(gender);
+		formFrame.add(room);
 		formFrame.add(nameLabel);
 		formFrame.add(surnameLabel);
 		formFrame.add(label1);
