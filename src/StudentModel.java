@@ -85,7 +85,7 @@ public class StudentModel {
 	}
 
 	public void changePaymentStatus(int studentID) {
-		String sql = "update students set payment = " + 1 + "where ID = " + studentID;
+		String sql = "update students set payment = " + 1 + " where ID = " + studentID;
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -98,12 +98,12 @@ public class StudentModel {
 		String sql = "select isFormFilled from students where ID = "+studentID;
 		try (ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				if (rs.getInt("isFormFilled") == 0)
-		return true;
+				if (rs.getInt("isFormFilled") == 0 || rs.getObject("isFormFilled")==null)
+		return false;
 			}}catch(SQLException e){
 				e.printStackTrace();
 		
 	}
-		return false;
+		return true;
 	}
 }

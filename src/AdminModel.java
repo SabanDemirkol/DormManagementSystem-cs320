@@ -8,7 +8,7 @@ public class AdminModel {
 	public AdminDatabase db;
 	public Statement stmt;
 	ArrayList<Integer> IDs = new ArrayList<Integer>();
-private static int roomCounter = 0;
+	private static int roomCounter = 0;
 	public AdminModel() {
 		try {
 			db = new AdminDatabase();
@@ -50,12 +50,17 @@ private static int roomCounter = 0;
 	}
 
 	public void allocation() {
-		String sql = "Select * from students order by priority desc";
+		String sql = "Select * from students where isFormFilled = "+1+" order by priority desc";
 		try( ResultSet rs = stmt.executeQuery(sql)) {
-			while(rs.next()&& roomCounter <= 50) {
-				System.out.println(roomCounter);
+			while(rs.next()) {
+				System.out.println(rs.getInt("ID"));
+				if(roomCounter < 50) 
 				updateIsAllocation(rs.getInt("ID"));
 				roomCounter++;
+			//	System.out.println(roomCounter);
+				
+			//	updateIsAllocation(rs.getInt("ID"));
+			//	roomCounter++;
 	}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
