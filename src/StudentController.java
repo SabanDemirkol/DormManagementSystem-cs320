@@ -48,6 +48,10 @@ model.setIsFormFilled(id);
 	public void setPayment(int studentID) {
 		model.changePaymentStatus(studentID);
 	}
+
+	public boolean checkFormStatus(int studentID) {
+		return model.getPaymentStatus(studentID);
+	}
 }
 	
 
