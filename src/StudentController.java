@@ -27,16 +27,23 @@ String ID;
 		return (model.isFormFilled(studentID));
 	}
 
-	public void checkPriorty(String comboPriority) {
-		if(comboPriority.equals("None"))
-model.setStudentsPriority(0,ID);
-		else if ( comboPriority.equals("Scholarship"))
-			model.setStudentsPriority(1,ID);
-		else if(comboPriority.equals("Disabled"))
-			model.setStudentsPriority(2,ID);
-	}
+	
+		
 
 	public void setFormFilled(String id) {
 model.setIsFormFilled(id);
 	}
+
+	public void checkPriorty(String comboPriority, int studentID) {
+		// TODO Auto-generated method stub
+		System.out.println(ID);
+		if(comboPriority.equals("None"))
+			model.setStudentsPriority(0,studentID);
+		else if ( comboPriority.equals("Scholarship"))
+			model.setStudentsPriority(1,studentID);
+		else if(comboPriority.equals("Disabled"))
+			model.setStudentsPriority(2,studentID);
+	}
 }
+	
+

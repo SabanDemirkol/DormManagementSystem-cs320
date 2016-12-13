@@ -24,7 +24,7 @@ public class AdminLoginPanel{
 		adminFrame.setTitle("Admin Login");
 		adminFrame.setLayout(null);
 
-		JLabel label1 = new JLabel("Administrator Name: ");
+		JLabel label1 = new JLabel("Administrator ID: ");
 		label1.setBounds(50, 54, 120, 120);
 		adminFrame.add(label1);
 

@@ -49,8 +49,6 @@ public class StudentModel {
 			return false;
 		}
 	}
-
-
 	public boolean isFormFilled(int studentID) {
 		String sql = "select isFormFilled from students where ID="+studentID;
 		try( ResultSet rs3 = stmt.executeQuery(sql)) {
@@ -65,7 +63,7 @@ public class StudentModel {
 		return true;
 	}
 
-	public void setStudentsPriority(int priority,String ID)  {
+	public void setStudentsPriority(int priority,int ID)  {
 		String sql = "update students set priority = "+priority+" where ID = "+ID + "";
 		try {
 			stmt.executeUpdate(sql);

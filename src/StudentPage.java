@@ -169,7 +169,7 @@ paymentFrame.setVisible(false);			}
 
 				} else {
 					controller.setFormFilled(""+studentID);
-					controller.checkPriorty(comboPriority);
+					controller.checkPriorty(comboPriority,studentID);
 					JOptionPane.showMessageDialog(null, " Application is successfull. ");
 					formFrame.setVisible(false);
 				}

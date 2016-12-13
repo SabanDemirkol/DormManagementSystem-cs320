@@ -10,18 +10,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import sun.applet.Main;
+
 public class AdminPage extends JFrame {
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	int screenWidth = screenSize.width; // width of the computer screen
 	int screenHeight = screenSize.height; // height of the computer screen
-	Admin admin;
+	int adminID;
+	private AdminController controller = new AdminController();
 	JPanel buttonPanel = new JPanel();
 	JPanel actionPanel = new JPanel();
+	public AdminPage(int adminID) {
 
-	public AdminPage(Admin admin) {
-
-		this.admin = admin;
+		this.adminID = adminID;
 		this.setSize(screenWidth, screenHeight);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
@@ -30,14 +32,13 @@ public class AdminPage extends JFrame {
 		buttonPanel.setBackground(Color.red);
 		buttonPanel.setLayout(null);
 		
-		addButtons(admin, buttonPanel);
-		addLabels(admin.getName(), buttonPanel);
+		addButtons(adminID, buttonPanel);
 		
 		actionPanel.setLayout(null);
 		actionPanel.setBounds(screenWidth-screenWidth*2/3, 0 , screenWidth*2/3, screenHeight);
 actionPanel.setBackground(Color.black);
 		this.add(actionPanel);
-		
+		this.add(buttonPanel);
 		
 		this.setVisible(true);
 	}
@@ -46,7 +47,7 @@ actionPanel.setBackground(Color.black);
 		repaint();
 	}
 
-	private void addButtons(Admin admin, JPanel buttonPanel) {
+	private void addButtons(int adminID, JPanel buttonPanel) {
 
 		int buttonWidth = screenWidth / 3;
 		int buttonHeight = screenHeight / 6;
@@ -57,14 +58,14 @@ actionPanel.setBackground(Color.black);
 		JButton checkStudentsButton = new JButton("Check Students");
 		JButton startAllocationButton = new JButton("Start Allocation"); 
 		JButton deleteButton = new JButton("Delete");
-		JButton updateButton = new JButton("Update");
+		JButton reallocateButton = new JButton("Reallocate");
 		JButton logOffButton = new JButton("Log-off");
 
 		checkRoomButton.setBounds(xCoordinate, yCoordinate, buttonWidth, buttonHeight);
 		checkStudentsButton.setBounds(xCoordinate, yCoordinate + buttonHeight, buttonWidth, buttonHeight);
 		startAllocationButton.setBounds(xCoordinate, yCoordinate + buttonHeight * 2, buttonWidth, buttonHeight);
 		deleteButton.setBounds(xCoordinate, yCoordinate + buttonHeight * 3, buttonWidth, buttonHeight);
-		updateButton.setBounds(xCoordinate, yCoordinate + buttonHeight * 4, buttonWidth, buttonHeight);
+		reallocateButton.setBounds(xCoordinate, yCoordinate + buttonHeight * 4, buttonWidth, buttonHeight);
 		logOffButton.setBounds(xCoordinate, yCoordinate + buttonHeight * 5, buttonWidth, buttonHeight);
 
 		checkRoomButton.addActionListener(new ActionListener() {
@@ -87,7 +88,7 @@ actionPanel.setBackground(Color.black);
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+ controller.startAllocate();
 
 			}
 		});
@@ -99,7 +100,7 @@ actionPanel.setBackground(Color.black);
 
 			}
 		});
-		updateButton.addActionListener(new ActionListener() {
+		reallocateButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -118,20 +119,12 @@ actionPanel.setBackground(Color.black);
 		buttonPanel.add(checkStudentsButton);
 		buttonPanel.add(startAllocationButton);
 		buttonPanel.add(deleteButton);
-		buttonPanel.add(updateButton);
+		buttonPanel.add(reallocateButton);
 		buttonPanel.add(logOffButton);
+		
+		buttonPanel.setVisible(true);
 	}
 
-	private void addLabels(String name, JPanel panel) {
-		JLabel label = new JLabel("admin: ");
-		JLabel nameLabel = new JLabel(name);
-		label.setBounds(650, 20, 50, 20);
-		nameLabel.setBounds(700, 20, 50, 20);
-		label.setFont(new Font(null, Font.BOLD, 15));
-		nameLabel.setFont(new Font(null, Font.BOLD, 15));
-		panel.add(label);
-		panel.add(nameLabel);
-		this.add(panel);
-	}
+	
 
 }
