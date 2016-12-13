@@ -53,16 +53,21 @@ public class AdminModel {
 		String sql = "Select * from students where isFormFilled = "+1+" order by priority desc";
 		try( ResultSet rs = stmt.executeQuery(sql)) {
 			while(rs.next()) {
-				System.out.println(rs.getInt("ID"));
-			//	System.out.println(roomCounter);
-				
-				updateIsAllocation(rs.getInt("ID"));
-			//	roomCounter++;
-	}
-		} catch (SQLException e) {
+				int ID = rs.getInt("ID");
+				System.out.println(ID);
+				String sql1 = "update students set isAllocated = "+1+" where ID = "+ID;
+				try {
+					stmt.executeQuery(sql1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}}
+			e1.printStackTrace();
+		}
+	}
 
 	private void updateIsAllocation(int ID) {
 		String sql = "update students set isAllocated = "+1+" where ID = "+ID;
