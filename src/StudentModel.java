@@ -13,11 +13,11 @@ public class StudentModel {
 	public StudentModel() {
 		try {
 			db = new Database();
-		} catch (SQLException e) {
+			stmt = (Statement) db.stmt;
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		stmt = (Statement) db.stmt;
 	}
 
 	public boolean isLoginCorrect(String id, char[] ps) throws SQLException {
@@ -33,7 +33,7 @@ public class StudentModel {
 
 				if (ID == rs.getInt("ID")) {
 
-					String pss = "SELECT PS FROM students where ID = '" + ID + "'";
+					String pss = "SELECT PS FROM students where ID = " + ID ;
 					try (ResultSet rs2 = stmt.executeQuery(pss)) {
 						while (rs2.next()) {
 							if (password == rs2.getInt("ps")) {
@@ -52,22 +52,21 @@ public class StudentModel {
 
 
 	public boolean isFormFilled(int studentID) {
-		String sql = "select isFormFilled from student where ID='"+studentID+"'";
+		String sql = "select isFormFilled from students where ID="+studentID;
 		try( ResultSet rs3 = stmt.executeQuery(sql)) {
 			while(rs3.next()) {
 				if(rs3.getInt("isFormFilled") == 1)
-					return true;
-				
+					return false;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	public void setStudentsPriority(int priority,String ID)  {
-		String sql = "update student set priority="+priority+" where ID='"+ID+"'";
+		String sql = "update students set priority = "+priority+" where ID = "+ID + "";
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -76,8 +75,8 @@ public class StudentModel {
 		} 
 	}
 	
-	public void setIsFormFilled(int isFormFilled, String ID) {
-		String sql = "update student set isFormFilled="+isFormFilled+" where ID='"+ID+"'";
+	public void setIsFormFilled( String ID) {
+		String sql = "update students set isFormFilled="+1+" where ID="+ID;
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {

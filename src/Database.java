@@ -52,8 +52,8 @@ public class Database {
 	public void executeDatabase(ArrayList<Integer> ids,
 			ArrayList<Integer> passwords, Statement stmt) {
 		for (int j = 0; j < 100; j++) {
-			String sql = "INSERT INTO students (ID,ps,isFormFilled,payment,isAllocated,priority) " + "VALUES ('"
-					+ ids.get(j) + "','" + passwords.get(j) + ",null,null,null,0')";
+			String sql = "INSERT INTO students (ID,ps,isFormFilled,payment,isAllocated,priority) " + "VALUES ("
+					+ ids.get(j) + ",'" + passwords.get(j) + "',null,null,null,0)";
 			try {
 				stmt.executeUpdate(sql);
 			} catch (SQLException e) {

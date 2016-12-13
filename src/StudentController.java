@@ -35,4 +35,8 @@ model.setStudentsPriority(0,ID);
 		else if(comboPriority.equals("Disabled"))
 			model.setStudentsPriority(2,ID);
 	}
+
+	public void setFormFilled(String id) {
+model.setIsFormFilled(id);
+	}
 }

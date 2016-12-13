@@ -65,11 +65,11 @@ public class StudentPage extends JPanel {
 		applyForm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(controller.fillForm(studentID))
+				if(controller.fillForm(studentID)){
 					fillForm();
-				else
+				}else{
 				JOptionPane.showMessageDialog(null, "Application form already filled.");
-		}});
+		}}});
 
 		checkAppointment.setVisible(true);
 		this.add(checkAppointment);
@@ -162,11 +162,13 @@ paymentFrame.setVisible(false);			}
 				String comboGender = gender.getSelectedItem().toString();
 				String comboRoom = room.getSelectedItem().toString();
 				String comboPriority = priority.getSelectedItem().toString();
+				System.out.println(comboPriority);
 				if ((comboGender + comboPriority + comboRoom).contains("-") || nameField.getText().isEmpty()
 						|| surnameField.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Please fill all blanks");
 
 				} else {
+					controller.setFormFilled(""+studentID);
 					controller.checkPriorty(comboPriority);
 					JOptionPane.showMessageDialog(null, " Application is successfull. ");
 					formFrame.setVisible(false);
