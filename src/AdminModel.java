@@ -54,9 +54,6 @@ public class AdminModel {
 		try( ResultSet rs = stmt.executeQuery(sql)) {
 			while(rs.next()) {
 				System.out.println(rs.getInt("ID"));
-				if(roomCounter < 50) 
-				updateIsAllocation(rs.getInt("ID"));
-				roomCounter++;
 			//	System.out.println(roomCounter);
 				
 			//	updateIsAllocation(rs.getInt("ID"));
