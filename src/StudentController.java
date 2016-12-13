@@ -44,6 +44,10 @@ model.setIsFormFilled(id);
 		else if(comboPriority.equals("Disabled"))
 			model.setStudentsPriority(2,studentID);
 	}
+
+	public void setPayment(int studentID) {
+		model.changePaymentStatus(studentID);
+	}
 }
 	
 

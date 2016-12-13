@@ -33,7 +33,7 @@ public class StudentModel {
 
 				if (ID == rs.getInt("ID")) {
 
-					String pss = "SELECT PS FROM students where ID = " + ID ;
+					String pss = "SELECT PS FROM students where ID = " + ID;
 					try (ResultSet rs2 = stmt.executeQuery(pss)) {
 						while (rs2.next()) {
 							if (password == rs2.getInt("ps")) {
@@ -49,11 +49,12 @@ public class StudentModel {
 			return false;
 		}
 	}
+
 	public boolean isFormFilled(int studentID) {
-		String sql = "select isFormFilled from students where ID="+studentID;
-		try( ResultSet rs3 = stmt.executeQuery(sql)) {
-			while(rs3.next()) {
-				if(rs3.getInt("isFormFilled") == 1)
+		String sql = "select isFormFilled from students where ID=" + studentID;
+		try (ResultSet rs3 = stmt.executeQuery(sql)) {
+			while (rs3.next()) {
+				if (rs3.getInt("isFormFilled") == 1)
 					return false;
 			}
 		} catch (SQLException e) {
@@ -63,18 +64,8 @@ public class StudentModel {
 		return true;
 	}
 
-	public void setStudentsPriority(int priority,int ID)  {
-		String sql = "update students set priority = "+priority+" where ID = "+ID + "";
-		try {
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	
-	public void setIsFormFilled( String ID) {
-		String sql = "update students set isFormFilled="+1+" where ID="+ID;
+	public void setStudentsPriority(int priority, int ID) {
+		String sql = "update students set priority = " + priority + " where ID = " + ID + "";
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -83,4 +74,36 @@ public class StudentModel {
 		}
 	}
 
+	public void setIsFormFilled(String ID) {
+		String sql = "update students set isFormFilled=" + 1 + " where ID=" + ID;
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void changePaymentStatus(int studentID) {
+		String sql = "update students set payment = " + 1 + "where ID = " + studentID;
+		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public boolean getPaymentStatus(int studentID) {
+		String sql = "select payment from students where ID = "+studentID;
+		try (ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				if (rs.getInt("payment") == 0)
+		return false;
+			}}catch(SQLException e){
+				e.printStackTrace();
+		
+	}
+		return true;
+	}
 }

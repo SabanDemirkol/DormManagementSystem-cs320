@@ -53,6 +53,7 @@ private static int roomCounter = 0;
 		String sql = "Select * from students order by priority desc";
 		try( ResultSet rs = stmt.executeQuery(sql)) {
 			while(rs.next()&& roomCounter <= 50) {
+				System.out.println(roomCounter);
 				updateIsAllocation(rs.getInt("ID"));
 				roomCounter++;
 	}

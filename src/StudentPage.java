@@ -116,6 +116,7 @@ public class StudentPage extends JPanel {
 		approve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, " Payment is successfull ");
+				controller.setPayment(studentID);
 paymentFrame.setVisible(false);			}
 		});
 
