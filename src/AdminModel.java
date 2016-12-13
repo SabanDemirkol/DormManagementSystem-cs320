@@ -56,7 +56,7 @@ public class AdminModel {
 				System.out.println(rs.getInt("ID"));
 			//	System.out.println(roomCounter);
 				
-			//	updateIsAllocation(rs.getInt("ID"));
+				updateIsAllocation(rs.getInt("ID"));
 			//	roomCounter++;
 	}
 		} catch (SQLException e) {
