@@ -122,6 +122,8 @@ public class StudentPage extends JPanel{
 		JLabel explanation = new JLabel( " Please fill the following questions: ");
 		JTextField name = new JTextField("Enter your name: ");
 		JTextField surname = new JTextField("Enter your surname: ");
+		JLabel labelGender = new JLabel(" Choose your gender");
+		JLabel labelPriority = new JLabel(" Choose your priority type");
 		JComboBox<String> gender = new JComboBox<>(genderOptions);
 		JComboBox<String> priority = new JComboBox<>(priorityOptions);	
 		JButton apply = new JButton("Apply");
@@ -133,8 +135,10 @@ public class StudentPage extends JPanel{
 		explanation.setBounds(10, 50, 400, 100);
 		name.setBounds(50, 150, 300, 30);
 		surname.setBounds(50, 200, 300, 30);
-		gender.setBounds(50, 250, 100, 30);
-		priority.setBounds(50, 300, 100, 30);
+		labelGender.setBounds(50, 250, 150, 30);
+		gender.setBounds(50, 280, 100, 30);
+		labelPriority.setBounds(50, 330, 150, 30);
+		priority.setBounds(50, 360, 100, 30);
 		
 		apply.setBounds(250, 500, 100, 30);
 		apply.addActionListener(new ActionListener() {
@@ -148,7 +152,9 @@ public class StudentPage extends JPanel{
 		formFrame.add(explanation);
 		formFrame.add(name);
 		formFrame.add(surname);
+		formFrame.add(labelGender);
 		formFrame.add(gender);
+		formFrame.add(labelPriority);
 		formFrame.add(priority);
 		formFrame.add(apply);
 		
