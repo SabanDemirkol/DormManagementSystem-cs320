@@ -79,7 +79,11 @@ public class StudentPage extends JPanel {
 		payDormFee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(controller.checkFormStatus(studentID)){
 				openPaymentWindow();
+				controller.setPayment(studentID);
+				}else{
+					JOptionPane.showMessageDialog(null, " You should apply the form first.");}
 			}
 		});
 
@@ -115,10 +119,11 @@ public class StudentPage extends JPanel {
 		approve.setBounds(150, 150, 200, 30);
 		approve.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(controller.checkFormStatus(studentID))
+			
 				JOptionPane.showMessageDialog(null, " Payment is successfull ");
-				controller.setPayment(studentID);
-paymentFrame.setVisible(false);			}
+				
+paymentFrame.setVisible(false);			
+}
 		});
 
 		paymentFrame.add(amount);

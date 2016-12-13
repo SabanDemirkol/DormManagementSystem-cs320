@@ -95,15 +95,15 @@ public class StudentModel {
 	}
 
 	public boolean getPaymentStatus(int studentID) {
-		String sql = "select payment from students where ID = "+studentID;
+		String sql = "select isFormFilled from students where ID = "+studentID;
 		try (ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				if (rs.getInt("payment") == 0)
-		return false;
+				if (rs.getInt("isFormFilled") == 0)
+		return true;
 			}}catch(SQLException e){
 				e.printStackTrace();
 		
 	}
-		return true;
+		return false;
 	}
 }
